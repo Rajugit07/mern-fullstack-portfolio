@@ -68,7 +68,7 @@ export const navReveal: Variants = {
 };
 
 /** Project card image hover zoom */
-export const imageZoom = {
-  rest: { scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
-  hover: { scale: 1.03, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+export const imageZoom: Variants = {
+  rest: { scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
+  hover: { scale: 1.03, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
 };

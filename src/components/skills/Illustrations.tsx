@@ -15,9 +15,7 @@ export const ExplodedStack = () => {
   const bY = 65 - 100;  // BACKEND   → -35
   const dY = 65;        // DATABASE  →  65
 
-  // Animated flow paths
-  const reqPath = `M 0,${fY - 40} L 0,${fY} L 0,${aY} L 0,${bY} L 0,${dY}`;
-  const resPath = `M 0,${dY} L 0,${bY} L 0,${aY} L 0,${fY} L 0,${fY - 40}`;
+
 
   return (
     <svg viewBox="-200 -380 560 600" className="iso-svg iso-stack">
@@ -178,7 +176,7 @@ export const ExplodedStack = () => {
    CHESS BOARD — Isometric checkered grid (Languages)
    ═══════════════════════════════════════════════════════ */
 export const ChessBoard = () => {
-  const size = 12, gap = 0;
+  const size = 12;
   const grid = 6;
   const cubes = [];
 
@@ -301,7 +299,8 @@ export const DataDisc = () => {
       <IsoPlatform x={0} y={0} z={0} w={70} d={70} h={3} />
 
       {discs.map((z, i) => {
-        const [cx, cy] = [30.3, 35 - z - 5]; // center of platform roughly
+        const _opacity_base = [30.3, 35 - z - 5]; // center of platform (unused, kept for reference)
+        void _opacity_base;
         const opacity = 0.12 + i * 0.05;
         return (
           <g key={i}>
