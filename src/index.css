@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* ─── Google Fonts: Instrument Serif + Inter (as Sans fallback) ─── */
+@import url("https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Inter:wght@400;500;600;700&display=swap");
+
+/* ─── Design Tokens via Tailwind v4 @theme ─── */
+@theme {
+    /* ── Colors (Instrument-style monochrome) ── */
+    --color-primary: #1a1a1a;
+    --color-primary-container: #111111;
+    --color-secondary: #474747;
+    --color-tertiary: #999999;
+    --color-surface: #ffffff;
+    --color-surface-dim: #dadada;
+    --color-surface-container: #e8e8e8;
+    --color-surface-container-high: #e0e0e0;
+    --color-surface-container-highest: #d4d4d4;
+    --color-on-surface: #1a1a1a;
+    --color-on-surface-variant: #444748;
+    --color-outline: #747878;
+    --color-outline-variant: #d4d4d4;
+    --color-inverse-surface: #1a1a1a;
+    --color-inverse-on-surface: #f2f2f2;
+    --color-error: #ba1a1a;
+    --color-canvas: #ffffff;
+
+    /* ── Typography ── */
+    --font-serif: "Baskervville", "Georgia", serif;
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+    /* ── Spacing ── */
+    --spacing-section: 10rem;
+    --spacing-gutter: 1.5rem;
+    --spacing-margin-mobile: 1.5rem;
+    --spacing-margin-desktop: 0.15rem;
+
+    /* ── Border Radius ── */
+    --radius-card: 1.5rem;
+    --radius-button: 0.75rem;
+    --radius-nav: 9999px;
+
+    /* ── Transitions ── */
+    --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Base Styles ─── */
+@layer base {
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--color-surface);
+        color: var(--color-on-surface);
+        line-height: 1.6;
+        letter-spacing: -0.01em;
+        overflow-x: hidden;
+    }
+
+    ::selection {
+        background-color: var(--color-primary);
+        color: var(--color-surface);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-tertiary);
+        border-radius: 9999px;
+    }
+}
+
+/* ─── Utility Classes ─── */
+@layer utilities {
+    /*
+     * Typography Scale — matched to Instrument reference
+     * (https://instrument.framer.website)
+     *
+     * The reference uses exactly 3 typographic levels:
+     *   1. Serif display  — 60px desktop / 30px mobile
+     *   2. Serif heading   — 28px (no responsive change)
+     *   3. Sans-serif body — 14px everywhere (nav, labels, body, metadata)
+     */
+
+    /* ── Display: Massive serif hero text ── */
+    .text-display {
+        font-family: var(--font-serif);
+        font-size: 1.875rem; /* 30px mobile */
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.06em;
+    }
+
+    @media (min-width: 768px) {
+        .text-display {
+            font-size: 3.75rem; /* 60px desktop */
+            line-height: 1.1;
+            letter-spacing: -0.06em; /* -3.6px at 60px */
+        }
+    }
+
+    /* ── Headline: Large serif for hero/page headings ── */
+    .text-headline {
+        font-family: var(--font-serif);
+        font-size: 1.4375rem; /* 23px mobile */
+        font-weight: 400;
+        line-height: 1.48;
+        letter-spacing: -0.05em;
+    }
+
+    @media (min-width: 768px) {
+        .text-headline {
+            font-size: 3.75rem; /* 60px desktop */
+            line-height: 1.1;
+            letter-spacing: -0.06em;
+        }
+    }
+
+    /* ── Title: Serif for section headings (h2/h3) ── */
+    .text-title {
+        font-family: var(--font-serif);
+        font-size: 1.5rem; /* 24px mobile */
+        font-weight: 400;
+        line-height: 1.14;
+        letter-spacing: -0.05em;
+    }
+
+    @media (min-width: 768px) {
+        .text-title {
+            font-size: 1.75rem; /* 28px desktop */
+            letter-spacing: -0.05em; /* -1.4px at 28px */
+        }
+    }
+
+    /* ── Subtitle: Serif for "Related work" sub-headings ── */
+    .text-subtitle {
+        font-family: var(--font-serif);
+        font-size: 1.5rem; /* 24px mobile */
+        font-weight: 400;
+        line-height: 1.14;
+        letter-spacing: -0.05em;
+    }
+
+    @media (min-width: 768px) {
+        .text-subtitle {
+            font-size: 1.75rem; /* 28px desktop */
+            letter-spacing: -0.05em;
+        }
+    }
+
+    /* ── Body Large: Sans-serif body paragraphs ── */
+    .text-body-lg {
+        font-family: var(--font-sans);
+        font-size: 0.875rem; /* 14px — matches reference */
+        font-weight: 400;
+        line-height: 1.43; /* 20px */
+        letter-spacing: 0;
+    }
+
+    /* ── Body Small: Sans-serif secondary text ── */
+    .text-body-sm {
+        font-family: var(--font-sans);
+        font-size: 0.875rem; /* 14px — matches reference */
+        font-weight: 400;
+        line-height: 1.43; /* 20px */
+        letter-spacing: 0;
+    }
+
+    /* ── Eyebrow: Serif italic accent ── */
+    .text-eyebrow {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 0.875rem; /* 14px */
+        font-weight: 400;
+        line-height: 1.43;
+        letter-spacing: 0;
+    }
+
+    /* ── Label: Sans-serif for nav, meta labels, project card text ── */
+    .text-label {
+        font-family: var(--font-sans);
+        font-size: 0.875rem; /* 14px — matches reference */
+        font-weight: 400;
+        line-height: 1.43; /* 20px */
+        letter-spacing: 0;
+    }
+
+    /* Glass effect */
+    .glass {
+        background: rgba(242, 242, 242, 0.7);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Container */
+    .container-wide {
+        width: 100%;
+        max-width: 92rem;
+        margin-inline: auto;
+        padding-inline: var(--spacing-margin-mobile);
+    }
+
+    @media (min-width: 768px) {
+        .container-wide {
+            padding-inline: var(--spacing-margin-desktop);
+        }
+    }
+}
